@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create / Edit Todo</title>
+  <title>Edit Todo</title>
 
   <!-- Bootstrap CSS from WebJars -->
   <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" />
   <!-- Bootstrap Icons from WebJars -->
   <link rel="stylesheet" href="webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"/>
+  <link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
 
   <style>
     body {
@@ -61,18 +62,14 @@
 
   <div class="card todo-card">
     <div class="card-header">
-      Manage Todo
+      Edit Todo
     </div>
     <div class="card-body p-4">
-		<form:form modelAttribute="todo" method="post" action="saveToDo">
-		  <!-- ID -->
-		  <div class="mb-3">
-		    <label for="id" class="form-label">ID</label>
-		    <div class="input-group">
-		      <span class="input-group-text"><i class="bi bi-hash"></i></span>
-		      <form:input path="id" type="number" class="form-control" id="id" placeholder="Enter Todo ID"/>
-		    </div>
-		  </div>
+		<!-- form action points to update URL -->
+		<form:form method="post" modelAttribute="todo" action="/update-todo">
+
+		  <!-- Hidden ID -->
+		  <form:hidden path="id"/>
 
 		  <!-- Username -->
 		  <div class="mb-3">
@@ -89,9 +86,8 @@
 		    <div class="input-group">
 		      <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
 		      <form:textarea path="description" class="form-control" id="description" rows="3" placeholder="Enter todo description"/>
-		  <errors path="description"/> 
-		  
-		   </div>
+		    </div>
+		    <form:errors path="description" cssClass="text-danger"/>
 		  </div>
 
 		  <!-- Target Date -->
@@ -111,12 +107,12 @@
 
 		  <!-- Buttons -->
 		  <div class="d-flex justify-content-between">
-		    <button type="submit" class="btn btn-success btn-custom">
-		      <i class="bi bi-save"></i> Save
+		    <button type="submit" class="btn btn-primary btn-custom">
+		      <i class="bi bi-pencil-square"></i> Update
 		    </button>
-		    <button type="reset" class="btn btn-secondary btn-custom">
-		      <i class="bi bi-arrow-counterclockwise"></i> Reset
-		    </button>
+		    <a href="/todos" class="btn btn-secondary btn-custom">
+		      <i class="bi bi-arrow-left"></i> Cancel
+		    </a>
 		  </div>
 		</form:form>
 

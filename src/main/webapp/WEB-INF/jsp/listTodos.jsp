@@ -56,8 +56,8 @@
               <td>${todo.targetDate}</td>
               <td>${todo.done}</td>
               <td>
-                <button class="btn btn-success btn-sm">Update</button>
-                <button class="btn btn-warning btn-sm">Delete</button>
+                <a href="update-todo?id=${todo.id}" class="btn btn-success btn-sm">Update</a>
+                <a href="delete-todo?id=${todo.id}" class="btn btn-warning btn-sm">Delete</a>
               </td>
             </tr>
           </c:forEach>

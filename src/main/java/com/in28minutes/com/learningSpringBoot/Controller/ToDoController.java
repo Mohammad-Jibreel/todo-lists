@@ -52,4 +52,31 @@ public class ToDoController {
 		return "redirect:list-todos";
 	}
 	}
+	
+	
+	@RequestMapping(value="delete-todo")
+	public String deleteToDo(@RequestParam int  id ) {
+		ToDoService.deleteById(id);
+		
+		return "redirect:list-todos";
+	}
+	
+	
+	@RequestMapping(value="update-todo")
+	public String showUpdatePage(@RequestParam int  id , ModelMap model ) {
+		model.addAttribute("todo", ToDoService.findById(id));
+		return "todo";
+	}
+	
+	@RequestMapping(value="update-todo",method=RequestMethod.POST) 
+	public String updateToDo(ModelMap model,@Valid Todo todo , BindingResult result ) {
+		if(result.hasErrors()) {
+			return "todo";	
+			}
+			else {
+			String username=(String) model.getAttribute("name");
+			ToDoService.updateToDo(todo);
+			return "redirect:list-todos";
+	}
+	}
 }
