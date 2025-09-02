@@ -1,32 +1,24 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Todo</title>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
-  <!-- Bootstrap CSS from WebJars -->
-  <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" />
-  <!-- Bootstrap Icons from WebJars -->
-  <link rel="stylesheet" href="webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"/>
-  <link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
-
-  <style>
+<style>
     body {
       background: linear-gradient(120deg, #e3f2fd, #f8f9fa);
-      display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
     }
+	
+    
     .todo-card {
-      width: 100%;
-      max-width: 600px;
       border-radius: 15px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       animation: fadeIn 0.6s ease-in-out;
-    }
+	  display:inline-block;
+	  text-align:center;
+	  width:50%;
+	  margin: 5% 25%;
+	    }
     .card-header {
       background: linear-gradient(90deg, #0d6efd, #0dcaf0);
       color: white;
@@ -57,9 +49,6 @@
       to {opacity: 1; transform: translateY(0);}
     }
   </style>
-</head>
-<body>
-
   <div class="card todo-card">
     <div class="card-header">
       Edit Todo

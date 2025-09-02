@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    input {
-        padding: 10px;
-        margin: 5px;
-        font-size: 16px;
-        font-weight: bold;
-        width: 70%;
-        height: 40px;
-    }
-    label {
-        display: inline-block;
-        margin: 5px 0;
-        font-size: 16px;
-    }
-    button {
-        padding: 10px 20px;
-        margin: 10px 0;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-</style>
-</head>
-<body>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
 <form action="/welcome" method="post">
     <label for="name">Username:</label><br>
@@ -36,6 +10,4 @@
 
     <button type="submit" name="submit">Submit</button>
 </form>
-
-</body>
-</html>
+<%@ include file="common/footer.jspf" %>

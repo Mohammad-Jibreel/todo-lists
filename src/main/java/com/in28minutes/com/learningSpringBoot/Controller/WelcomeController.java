@@ -1,12 +1,16 @@
 package com.in28minutes.com.learningSpringBoot.Controller;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,21 +18,16 @@ import org.slf4j.LoggerFactory;
 @Controller
 @SessionAttributes("name")
 
-class LoginController {
+class WelcomeController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private static String USER_NAME="mohammad";
 	private static String PASSWORD="password123";
 
-    @RequestMapping("login")
-    public String gotoLoginPage(@RequestParam String name , ModelMap model) {
-    	model.addAttribute("name",name);
-    	logger.debug("Debug message");
-    	logger.info("Info message");
-    	logger.warn("Warning message");
-    	logger.error("Error message");
-    	
-        return "login"; // This will resolve to /WEB-INF/jsp/login.jsp (if view resolver is set)
+    @RequestMapping("/")
+    public String goToWelcomePage(ModelMap model) {
+    	model.put("name", getLoggedinUsername());
+        return "welcome"; // This will resolve to /WEB-INF/jsp/login.jsp (if view resolver is set)
     }
     
     @RequestMapping(value="/welcome",method=RequestMethod.POST)
@@ -43,6 +42,11 @@ class LoginController {
 
     	return "login";
     	
+    }
+    
+    private String getLoggedinUsername() {
+    	Authentication authenticator = SecurityContextHolder.getContext().getAuthentication();
+    	return authenticator.getName();
     }
     
     
